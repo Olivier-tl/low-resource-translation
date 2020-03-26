@@ -8,6 +8,7 @@ from tqdm import tqdm
 
 from models import baselines
 from models.seq2seq_gru import Seq2SeqGRU
+from models.seq2seq_lstm import Seq2SeqLSTM
 from utils import utils
 from utils import logging
 from utils import plots
@@ -99,6 +100,8 @@ def main(data_dir: str = '/project/cq-training-1/project2/teams/team12/data/',
         model = baselines.GRU(len(word2idx_fr), batch_size)
     elif model == 'seq2seqgru':
         model = Seq2SeqGRU(len(word2idx_en), word2idx_fr, batch_size, embedding_dim=256, encoder_units=256, decoder_units=256, attention_units=256)
+    elif model == 'seq2seqlstm':
+        model = Seq2SeqLSTM(len(word2idx_en), word2idx_fr, batch_size, embedding_dim=256, encoder_units=256, decoder_units=256, attention_units=256)
     else:
         raise Exception(f'Model "{model}" not recognized.')
     
